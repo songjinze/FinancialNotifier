@@ -24,7 +24,11 @@ public class SalaryManage {
         return salaryManage;
     }
 
-    
-
+    public void back(){
+        // TODO
+    }
+    public void initList(){
+        
+    }
 
 }

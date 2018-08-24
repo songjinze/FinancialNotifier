@@ -6,17 +6,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="653.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.SalaryManage">
+<AnchorPane prefHeight="556.0" prefWidth="876.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.SalaryManage">
    <children>
-      <TableView fx:id="employeeList" layoutX="20.0" layoutY="89.0" prefHeight="550.0" prefWidth="926.0">
+      <TableView fx:id="employeeList" layoutX="20.0" layoutY="73.0" prefHeight="456.0" prefWidth="838.0">
         <columns>
           <TableColumn fx:id="employeeIdColumn" prefWidth="75.0" text="编号" />
           <TableColumn fx:id="employeeNameColumn" prefWidth="184.0" text="姓名" />
-            <TableColumn fx:id="employeeEmailColumn" prefWidth="496.0" text="邮箱" />
-            <TableColumn fx:id="employeeSalaryColumn" prefWidth="170.0" text="应发放" />
+            <TableColumn fx:id="employeeEmailColumn" prefWidth="395.0" text="邮箱" />
+            <TableColumn fx:id="employeeSalaryColumn" prefWidth="183.0" text="应发放" />
         </columns>
       </TableView>
       <Button fx:id="searchButton" layoutX="276.0" layoutY="37.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="59.0" text="查找" />
       <TextField fx:id="searchField" layoutX="20.0" layoutY="37.0" prefHeight="23.0" prefWidth="241.0" />
+      <Button layoutX="803.0" layoutY="37.0" mnemonicParsing="false" text="返回" />
    </children>
 </AnchorPane>
