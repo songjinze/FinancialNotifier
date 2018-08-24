@@ -8,7 +8,9 @@ import java.io.*;
 
 public class Setting implements SettingService {
     private static volatile Setting setting;
-    private Setting(){}
+    private Setting(){
+        config= new FileHelper().getResourceFile("config.dat");
+    }
     public static Setting getInstance(){
         if(setting==null){
             synchronized (Setting.class){
@@ -17,10 +19,16 @@ public class Setting implements SettingService {
         }
         return setting;
     }
-    private File config= new FileHelper().getResourceFile("config.dat");
-    private UserVO getUserInfo(){
+    private File config;
+    public UserVO getUserInfo(){
         UserVO userVO=new UserVO();
         try {
+            if(!config.exists()){
+                config.getParentFile().mkdirs();
+                config.createNewFile();
+                UserVO newUser=new UserVO("","");
+                modifyConfig(newUser);
+            }
             BufferedReader bf = new BufferedReader(new FileReader(config));
             userVO.setName(bf.readLine());
             userVO.setEmail(bf.readLine());
