@@ -21,4 +21,32 @@ public interface SettingService {
      * @return true 修改成功 false 修改失败
      */
     boolean modifyFromEmailAddress(String fromEmailAddress);
+
+    /**
+     * 修改邮箱host
+     * @param host 新host
+     * @return  true 修改成功 false 修改失败
+     */
+    boolean modifyHost(String host);
+
+    /**
+     * 修改邮箱协议
+     * @param protocol 新协议
+     * @return true 修改成功 false 修改失败
+     */
+    boolean modifyProtocol(String protocol);
+
+    /**
+     * 修改邮箱账户名
+     * @param fromCount 新帐户名
+     * @return true 修改成功 false 修改失败
+     */
+    boolean modifyFromCount(String fromCount);
+
+    /**
+     * 修改邮箱密码
+     * @param fromPassword 新密码
+     * @return true 修改成功 false 修改失败
+     */
+    boolean modifyFromPassword(String fromPassword);
 }
