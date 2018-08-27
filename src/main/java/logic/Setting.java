@@ -69,31 +69,38 @@ public class Setting implements SettingService {
         }
         return true;
     }
+
+    @Override
     public boolean modifyName(String name) {
         userVO.setName(name);
         return modifyConfig();
     }
 
+    @Override
     public boolean modifyFromEmailAddress(String fromEmailAddress) {
         userVO.setEmail(fromEmailAddress);
         return modifyConfig();
     }
 
+    @Override
     public boolean modifyHost(String host) {
         userVO.setHost(host);
         return modifyConfig();
     }
 
+    @Override
     public boolean modifyProtocol(String protocol) {
         userVO.setProtocol(protocol);
         return modifyConfig();
     }
 
+    @Override
     public boolean modifyFromCount(String fromCount) {
         userVO.setFromCount(fromCount);
         return modifyConfig();
     }
 
+    @Override
     public boolean modifyFromPassword(String fromPassword) {
         userVO.setFromPassword(fromPassword);
         return modifyConfig();

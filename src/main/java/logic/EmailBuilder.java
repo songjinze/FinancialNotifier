@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.List;
 
-public class EmailBuilder {
+class EmailBuilder {
     private String mailContent;
     private final String toAddress;
 
@@ -28,12 +28,12 @@ public class EmailBuilder {
     private String fromCount;
     private String fromPassword;
 
-    public EmailBuilder(String toAddress) {
+    EmailBuilder(double salary,String toAddress) {
         this.toAddress = toAddress;
-        init();
+        init(salary);
     }
 
-    private void init() {
+    private void init(double salary) {
         UserVO userVO=Setting.getInstance().getUserInfo();
         this.host=userVO.getHost();
         this.protocol=userVO.getProtocol();
@@ -51,7 +51,7 @@ public class EmailBuilder {
 
             Calendar calendar = Calendar.getInstance();
             time.setText(calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(calendar.DATE));
-            message.setText("测试");
+            message.setText(salary+"");
 
             File tempFile = new FileHelper().getResourceFile(Setting.getInstance().getUserInfo().getName()
                     + "/"
@@ -102,40 +102,40 @@ public class EmailBuilder {
         return null;
     }
 
-    public String getMailContent() {
+    String getMailContent() {
         return mailContent;
     }
 
-    public String getToAddress() {
+    String getToAddress() {
         return toAddress;
     }
 
-    public String getDebug() {
+    String getDebug() {
         return debug;
     }
-    public String getAuth() {
+    String getAuth() {
         return auth;
     }
 
-    public String getHost() {
+    String getHost() {
         return host;
     }
-    public String getProtocol() {
+    String getProtocol() {
         return protocol;
     }
 
-    public String getSubject() {
+    String getSubject() {
         return subject;
     }
 
-    public String getFromAddress() {
+    String getFromAddress() {
         return fromAddress;
     }
-    public String getFromCount() {
+    String getFromCount() {
         return fromCount;
     }
 
-    public String getFromPassword() {
+    String getFromPassword() {
         return fromPassword;
     }
 }

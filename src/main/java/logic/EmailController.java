@@ -3,8 +3,6 @@ package logic;
 import logicservice.EmailService;
 import util.resultmessage.SendEmailMessage;
 
-import java.io.File;
-
 public class EmailController implements EmailService {
     private EmailController(){}
     private static volatile EmailController emailController;
@@ -16,8 +14,20 @@ public class EmailController implements EmailService {
         }
         return emailController;
     }
-    public SendEmailMessage sendEmail(File file, String toAddress) {
-        // TODO 实现方法
-        return null;
+
+    @Override
+    public SendEmailMessage sendEmail(double salary, String toAddress) {
+        boolean res;
+        try {
+            res = new EmailSender(salary,toAddress).send();
+        }catch (Exception e){
+            e.printStackTrace();
+            return SendEmailMessage.SEND_FAIL;
+        }
+        if(res){
+            return SendEmailMessage.SEND_SUCCESS;
+        }else{
+            return SendEmailMessage.SEND_FAIL;
+        }
     }
 }

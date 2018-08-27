@@ -8,15 +8,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class EmailSender {
+class EmailSender {
     private final Properties prop = new Properties();
     private final Session session;
     private final Message message;
     private final Transport transport;
     private EmailBuilder builder;
 
-    EmailSender(String toAddress) throws Exception {
-        builder = new EmailBuilder(toAddress);
+    EmailSender(double salary,String toAddress) throws Exception {
+        builder = new EmailBuilder(salary,toAddress);
         prop.setProperty("mail.debug", builder.getDebug());
         prop.setProperty("mail.smtp.auth", builder.getAuth());
         prop.setProperty("mail.host", builder.getHost());
@@ -26,12 +26,12 @@ public class EmailSender {
         message = new MimeMessage(session);
         transport = session.getTransport();
         message.setSubject(builder.getSubject());
-        message.setFrom(new InternetAddress(builder.getFromAddress(), "通知"));
+        message.setFrom(new InternetAddress(builder.getFromAddress(),Setting.getInstance().getUserInfo().getName()));
         transport.connect(builder.getFromCount(), builder.getFromPassword());
         message.setContent(builder.getMailContent(), "text/html;charset=utf-8");
     }
 
-    public void send() {
+    boolean send() {
         try {
             transport.sendMessage(this.message, new Address[]{
                     new InternetAddress(builder.getToAddress()),
@@ -39,6 +39,8 @@ public class EmailSender {
             });
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 }
