@@ -10,7 +10,6 @@ public class Setting implements SettingService {
     private static volatile Setting setting;
     private Setting(){
         config= new FileHelper().getResourceFile("config.dat");
-        userVO=new UserVO();
     }
     public static Setting getInstance(){
         if(setting==null){
@@ -21,13 +20,13 @@ public class Setting implements SettingService {
         return setting;
     }
     private File config;
-    private UserVO userVO;
     public UserVO getUserInfo(){
+        UserVO userVO=new UserVO("","","","","","");
         try {
             if(!config.exists()){
                 config.getParentFile().mkdirs();
                 config.createNewFile();
-                modifyConfig();
+                modifyConfig(userVO);
             }
             BufferedReader bf = new BufferedReader(new FileReader(config));
             userVO.setName(bf.readLine());
@@ -43,7 +42,7 @@ public class Setting implements SettingService {
         userFolder.mkdirs();
         return userVO;
     }
-    private boolean modifyConfig(){
+    private boolean modifyConfig(UserVO userVO){
         File userFolder=new File(userVO.getName());
         userFolder.mkdirs();
         try{
@@ -68,32 +67,38 @@ public class Setting implements SettingService {
     }
 
     public boolean modifyName(String name) {
+        UserVO userVO=getUserInfo();
         userVO.setName(name);
-        return modifyConfig();
+        return modifyConfig(userVO);
     }
 
     public boolean modifyFromEmailAddress(String fromEmailAddress) {
+        UserVO userVO=getUserInfo();
         userVO.setEmail(fromEmailAddress);
-        return modifyConfig();
+        return modifyConfig(userVO);
     }
 
     public boolean modifyHost(String host) {
+        UserVO userVO=getUserInfo();
         userVO.setHost(host);
-        return modifyConfig();
+        return modifyConfig(userVO);
     }
 
     public boolean modifyProtocol(String protocol) {
+        UserVO userVO=getUserInfo();
         userVO.setProtocol(protocol);
-        return modifyConfig();
+        return modifyConfig(userVO);
     }
 
     public boolean modifyFromCount(String fromCount) {
+        UserVO userVO=getUserInfo();
         userVO.setFromCount(fromCount);
-        return modifyConfig();
+        return modifyConfig(userVO);
     }
 
     public boolean modifyFromPassword(String fromPassword) {
+        UserVO userVO=getUserInfo();
         userVO.setFromPassword(fromPassword);
-        return modifyConfig();
+        return modifyConfig(userVO);
     }
 }

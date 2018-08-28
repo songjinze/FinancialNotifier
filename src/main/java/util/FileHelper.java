@@ -9,10 +9,9 @@ public class FileHelper {
      *
      * @param filePath 相对于resources的文件目录
      * 如resources/test.csv, 则filePath="test.csv"
-     * @return 文件索引
+     * @return 文件流
      */
     public File getResourceFile(String filePath){
-        String path=this.getClass().getResource("/").getPath();
-        return new File(path+filePath);
+        return new File(this.getClass().getResource("/").getPath()+filePath);
     }
 }
