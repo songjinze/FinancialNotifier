@@ -10,6 +10,7 @@ public class Setting implements SettingService {
     private static volatile Setting setting;
     private Setting(){
         config= new FileHelper().getResourceFile("config.dat");
+        userVO=new UserVO();
     }
     public static Setting getInstance(){
         if(setting==null){
@@ -26,11 +27,7 @@ public class Setting implements SettingService {
             if(!config.exists()){
                 config.getParentFile().mkdirs();
                 config.createNewFile();
-                UserVO newUser=new UserVO("","","","","","");
-                this.userVO=newUser;
                 modifyConfig();
-            }else{
-                userVO=new UserVO();
             }
             BufferedReader bf = new BufferedReader(new FileReader(config));
             userVO.setName(bf.readLine());
@@ -70,37 +67,31 @@ public class Setting implements SettingService {
         return true;
     }
 
-    @Override
     public boolean modifyName(String name) {
         userVO.setName(name);
         return modifyConfig();
     }
 
-    @Override
     public boolean modifyFromEmailAddress(String fromEmailAddress) {
         userVO.setEmail(fromEmailAddress);
         return modifyConfig();
     }
 
-    @Override
     public boolean modifyHost(String host) {
         userVO.setHost(host);
         return modifyConfig();
     }
 
-    @Override
     public boolean modifyProtocol(String protocol) {
         userVO.setProtocol(protocol);
         return modifyConfig();
     }
 
-    @Override
     public boolean modifyFromCount(String fromCount) {
         userVO.setFromCount(fromCount);
         return modifyConfig();
     }
 
-    @Override
     public boolean modifyFromPassword(String fromPassword) {
         userVO.setFromPassword(fromPassword);
         return modifyConfig();
