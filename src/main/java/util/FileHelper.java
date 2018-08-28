@@ -12,6 +12,6 @@ public class FileHelper {
      * @return 文件流
      */
     public File getResourceFile(String filePath){
-        return new File(this.getClass().getResource("/").getPath()+filePath);
+        return new File(new File(FileHelper.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/"+filePath);
     }
 }

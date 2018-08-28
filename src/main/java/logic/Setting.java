@@ -21,7 +21,12 @@ public class Setting implements SettingService {
     }
     private File config;
     public UserVO getUserInfo(){
-        UserVO userVO=new UserVO("","","","","","");
+        UserVO userVO=new UserVO("sjz",
+                "734609160@qq.com",
+                "smtp.qq.com",
+                "smtp",
+                "734609160@qq.com",
+                "ftxybikjkzldbfff");
         try {
             if(!config.exists()){
                 config.getParentFile().mkdirs();

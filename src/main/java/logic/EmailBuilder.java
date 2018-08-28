@@ -43,7 +43,7 @@ class EmailBuilder {
         SAXReader reader = new SAXReader();
         Document document = null;
         try {
-            document = reader.read(new FileHelper().getResourceFile("pageTemplate.html").getPath());
+            document = reader.read(getClass().getClassLoader().getResourceAsStream("pageTemplate.html"));
             Element root = document.getRootElement();
             Element name = getNodes(root, "id", "name");
             Element message = getNodes(root, "id", "message");
